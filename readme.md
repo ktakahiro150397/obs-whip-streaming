@@ -23,11 +23,17 @@ http://localhost:1984/api/webrtc?dst=livestream
 
 ## 起動
 
-`public.bat`起動
-cloudflaredでローカルサーバーが公開されて、URLをもらえる
-そのURLでストリーミングをみることができます
+`public.bat`起動でcloudflaredでローカルサーバーが公開されて、URLをもらえる。
 
-URLは実行ごとに変わる一時的なもの
+
+そのURLでストリーミングをみることができます。
+
+
+配信URLは`https://<cloudflaredからもらったURL>.com/stream.html?src=livestream`
+
+
+URLは実行ごとに変わる一時的なものなので注意。
+
 
 ```
 2024-08-03T03:55:20Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
