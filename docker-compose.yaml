@@ -1,0 +1,10 @@
+services:
+  janus:
+    container_name: janus
+    build:
+      context: .
+      dockerfile: ./docker/janus/Dockerfile
+    ports:
+      - "8088:8088"
+    command: ["janus"]
+  
