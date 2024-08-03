@@ -5,7 +5,7 @@ REM go2rtc起動
 start go2rtc.exe
 
 REM cloudflaredでローカルサーバーを公開
-cloudflared tunnel --url localhost:1984
+start cloudflared tunnel --url localhost:1984
 
 
 REM OBS : http://localhost:1984/api/webrtc?dst=livestream
