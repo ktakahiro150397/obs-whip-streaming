@@ -10,6 +10,9 @@ RUN yum install -y libmicrohttpd-devel jansson-devel \
 RUN yum install -y git make
 RUN yum install -y libnice-devel
 RUN yum install -y which 
+
+RUN yum install -y nodejs
+
 # -----
 
 # ----- Build janus-gateway
@@ -27,4 +30,19 @@ RUN make configs
 
 # Add PATH
 ENV PATH=$PATH:/opt/janus/bin
+
+# config file /opt/januc/etc/janus/janus.jcfg
+
+
+# RUN janus --daemon --log-file=/var/log/janus.log
 # ----- 
+
+# ----- Install simple-whi-server
+WORKDIR /app
+
+RUN git clone https://github.com/ktakahiro150397/simple-whip-server.git
+
+WORKDIR /app/simple-whip-server
+RUN npm run build
+# -----
+
