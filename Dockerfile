@@ -1,31 +1,16 @@
-FROM ubuntu:22.04
+FROM fedora:rawhide
 
 ENV PKG_CONFIG_PATH=/usr/lib/pkgconfig
-ENV DEBIAN_FRONTEND=noninteractive
 
 # ----- Install dependencies
-RUN apt-get update
-RUN apt install -y git make meson \
-    libmicrohttpd-dev libjansson-dev \
-    libssl-dev libsofia-sip-ua-dev libglib2.0-dev \
-    libopus-dev libogg-dev libcurl4-openssl-dev liblua5.3-dev \
-    libconfig-dev pkg-config libtool automake
-
-
-RUN  apt install -y libsrtp2-1
-
+RUN yum install -y libmicrohttpd-devel jansson-devel \
+    openssl-devel libsrtp-devel sofia-sip-devel glib2-devel \
+    opus-devel libogg-devel libcurl-devel pkgconfig \
+    libconfig-devel libtool autoconf 
+RUN yum install -y git make
+RUN yum install -y libnice-devel
+RUN yum install -y which 
 # -----
-
-# ----- Build and install nice
-WORKDIR /app
-RUN git clone https://gitlab.freedesktop.org/libnice/libnice.git
-
-WORKDIR /app/libnice
-RUN meson build
-RUN ninja -C build
-RUN ninja -C build test
-RUN ninja -C build install
-# ----- 
 
 # ----- Build janus-gateway
 WORKDIR /app
@@ -36,4 +21,10 @@ WORKDIR /app/janus-gateway
 RUN sh autogen.sh
 
 RUN ./configure --prefix=/opt/janus
+RUN make
+RUN make install
+RUN make configs
+
+# Add PATH
+ENV PATH=$PATH:/opt/janus/bin
 # ----- 
