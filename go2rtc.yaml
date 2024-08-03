@@ -6,7 +6,7 @@ ffmpeg:
 
 log:
   format: "color"
-  level: "info"
+  level: "trace"
   output: "stdout"
   time: "UNIXMS"
 
