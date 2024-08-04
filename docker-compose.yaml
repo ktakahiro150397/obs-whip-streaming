@@ -1,0 +1,11 @@
+services:
+  go2rtc:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1984:1984"
+      - "8443:8443"
+      - "8554:8554"
+      - "8555:8555"
+    command: ["sleep", "infinity"]
